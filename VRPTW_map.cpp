@@ -1,8 +1,7 @@
 #include "VRPTW_map.h"
-
-Map::Map(std::string file_name)
+Map::Map(const char* file_name)
 {
-    TiXmlDocument instance(file_name.c_str());
+    TiXmlDocument instance(file_name);
     TiXmlElement *instance_element = instance.RootElement();
     TiXmlElement *info_element = instance_element->FirstChildElement();
     TiXmlElement *network_element = info_element->NextSiblingElement();
@@ -10,11 +9,11 @@ Map::Map(std::string file_name)
     TiXmlElement *requests_element = fleet_element->NextSiblingElement();
 
     auto p = fleet_element->FirstChildElement()->FirstChildElement("capacity");
-    Map::t.capacity = int(p->GetText());
+    Map::t.capacity = atoi(p->GetText());
     p = fleet_element->FirstChildElement()->FirstChildElement("max_travel_time");
-    Map::t.max_travel_time = int(p->GetText());
+    Map::t.max_travel_time = atoi(p->GetText());
 
-    Map::truck_num = int(fleet_element->FirstChildElement()->Attribute("number"));
+    Map::truck_num = atoi(fleet_element->FirstChildElement()->Attribute("number"));
     Map::Map_name = info_element->FirstChildElement("name")->GetText();
 
     auto nodes = network_element->FirstChildElement();

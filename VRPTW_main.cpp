@@ -1,7 +1,8 @@
-#include <iostream>
+// #include <iostream>
 #include "VRPTW_map.h"
 int main(){
-    Map test("solomon-1987-c1/C101_025.xml");
+    const char* filename = "solomon-1987-c1/C101_025.xml";
+    Map test(filename);
     std::cout<<"Hello world"<<std::endl;
     return 0;
 }

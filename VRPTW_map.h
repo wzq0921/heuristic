@@ -3,7 +3,6 @@
 #include <vector>
 #include "tinyxml.h"
 #include "tinystr.h"
-#include <string>
 
 
 typedef struct customer
@@ -24,12 +23,12 @@ typedef struct truck{
 class Map
 {
     std::vector<customer> customer_list;
-    std::string Map_name;
+    const char *Map_name;
     int truck_num;
     truck t;
     
 public:
-    Map(std::string file_name);
+    Map(const char* file_name);
     int get_distance(int p1, int p2);
     customer get_customer(int index);
 };
