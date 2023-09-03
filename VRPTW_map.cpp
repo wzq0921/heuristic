@@ -1,9 +1,9 @@
 #include "VRPTW_map.h"
 #include "tinyxml.h"
-Map::Map(const char* file_name)
+Map::Map(const char *file_name)
 {
     // TiXmlDocument instance(file_name);
-    TiXmlDocument instance;                              
+    TiXmlDocument instance;
     instance.LoadFile(file_name);
     TiXmlElement *instance_element = instance.RootElement();
     TiXmlElement *info_element = instance_element->FirstChildElement();
@@ -20,7 +20,10 @@ Map::Map(const char* file_name)
     Map::Map_name = info_element->FirstChildElement("name")->GetText();
 
     auto nodes = network_element->FirstChildElement();
-    for (auto p1 = nodes->FirstChildElement(), p2 = requests_element->FirstChildElement();
+    auto depot = nodes->FirstChildElement();
+    Map::depot_x = atoi(depot->FirstChildElement("cx")->GetText());
+    Map::depot_y = atoi(depot->FirstChildElement("cy")->GetText());
+    for (auto p1 = depot->NextSiblingElement(), p2 = requests_element->FirstChildElement();
          p1 != NULL; p1 = p1->NextSiblingElement(), p2 = p2->NextSiblingElement())
     {
         auto cx = p1->FirstChildElement("cx")->GetText();

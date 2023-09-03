@@ -23,9 +23,11 @@ typedef struct truck{
 class Map
 {
     std::vector<customer> customer_list;
+    int depot_x;
+    int depot_y;
     const char *Map_name;
     int truck_num;
-    truck t;
+    truck t; //卡车参数，包括容量和最长服务时间
     
 public:
     Map(const char* file_name);
