@@ -1,7 +1,10 @@
 #include "VRPTW_map.h"
+#include "tinyxml.h"
 Map::Map(const char* file_name)
 {
-    TiXmlDocument instance(file_name);
+    // TiXmlDocument instance(file_name);
+    TiXmlDocument instance;                              
+    instance.LoadFile(file_name);
     TiXmlElement *instance_element = instance.RootElement();
     TiXmlElement *info_element = instance_element->FirstChildElement();
     TiXmlElement *network_element = info_element->NextSiblingElement();
