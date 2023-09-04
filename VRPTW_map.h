@@ -22,7 +22,7 @@ typedef struct truck{
 
 class Map
 {
-    std::vector<customer> customer_list;
+    std::vector<customer> customer_list;    //0号节点是场站，其中服务时间和需求为0，时间窗从0-10000
     int depot_x;
     int depot_y;
     const char *Map_name;
@@ -30,7 +30,7 @@ class Map
     truck t; //卡车参数，包括容量和最长服务时间
     
 public:
-    Map(const char* file_name);
-    int get_distance(int p1, int p2);
+    Map(const char* file_name);         
+    double get_distance(int p1, int p2);
     customer get_customer(int index);
 };
